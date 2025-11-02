@@ -3,6 +3,11 @@ import Spline from '@splinetool/react-spline'
 import Navbar from '../components/Navbar'
 import '../LandingPage.css'
 
+// Generate unique request ID for idempotency
+function generateRequestId() {
+  return `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+}
+
 function EntryPage() {
   const [email, setEmail] = useState('')
   const [isVisible, setIsVisible] = useState(false)
@@ -364,58 +369,28 @@ function EntryPage() {
     setIsSubmitting(true)
     setSubmitMessage('')
     
-    // Google Apps Script Web App URL - Replace with your Web App URL (NOT the sheet URL)
-    // Follow instructions in GOOGLE_SHEETS_SETUP.md to create the script and get this URL
-    // It should look like: https://script.google.com/macros/s/AKfycby.../exec
-    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw_sUCJRCE2yOrP03RTJf9VKh0UcZ3Usk3yhIz1xjLZH_k2CgzIWGsoNbE2pZnatBIbaQ/exec'
+    const ENDPOINT = import.meta.env.VITE_SUBSCRIBE_API || 'http://localhost:3001/api/subscribe'
     
     try {
-      // If you haven't set up the Google Script URL yet, use a placeholder
-      if (GOOGLE_SCRIPT_URL === 'https://script.google.com/macros/s/AKfycbyg2fx6ajkCaLNgNt9s2Xg1dyGSPjAxuv5hyWCWF_lX0YOL4R8mxdK86VmduGTyNWrj9w/exec') {
-        // For now, just log and show success message
-        console.log('Email submitted:', email)
-        setSubmitMessage('Thank you for joining! Check your email for exclusive access.')
-        setEmail('')
-        setIsSubmitting(false)
-        return
-      }
+      // Create request payload
+      const payload = {
+        email: email.trim().toLowerCase(),
+        requestId: generateRequestId()
+      };
+
+      const res = await fetch(ENDPOINT, {
+        method: 'POST',
+        mode: 'no-cors', // Important: Use no-cors mode for Google Apps Script
+        headers: { 
+          'Content-Type': 'text/plain;charset=UTF-8'
+        },
+        body: JSON.stringify(payload),
+      })
       
-      // Send email to Google Sheets via Google Apps Script
-      // Google Apps Script works better with form data when using no-cors
-      const formData = new URLSearchParams()
-      formData.append('email', email)
-      formData.append('timestamp', new Date().toISOString())
-      
-      // First try with JSON
-      try {
-        const response = await fetch(GOOGLE_SCRIPT_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            email: email,
-            timestamp: new Date().toISOString(),
-          }),
-        })
-        
-        // Wait a moment to ensure request completes
-        await new Promise(resolve => setTimeout(resolve, 500))
-        
-        setSubmitMessage('Thank you for joining! Check your email for exclusive access.')
-        setEmail('')
-      } catch (fetchError) {
-        // Fallback: try with form data
-        await fetch(GOOGLE_SCRIPT_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          body: formData,
-        })
-        
-        setSubmitMessage('Thank you for joining! Check your email for exclusive access.')
-        setEmail('')
-      }
+      // With no-cors, we can't read the response, so assume success
+      // The script will still process and save the data
+      setSubmitMessage('Thank you for joining! Check your email for exclusive access.')
+      setEmail('')
       
       // Clear success message after 5 seconds
       setTimeout(() => {
@@ -423,6 +398,7 @@ function EntryPage() {
       }, 5000)
     } catch (error) {
       console.error('Error submitting email:', error)
+      // Even with error, the submission might have worked with no-cors
       setSubmitMessage('Thank you for joining! We\'ll be in touch soon.')
       setEmail('')
       
