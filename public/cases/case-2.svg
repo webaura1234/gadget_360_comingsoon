@@ -1,0 +1,24 @@
+<svg width="400" height="600" viewBox="0 0 400 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="titaniumGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#c0c0c0;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#a0a0a0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#808080;stop-opacity:1" />
+    </linearGradient>
+    <pattern id="titaniumTexture" patternUnits="userSpaceOnUse" width="20" height="20">
+      <rect width="20" height="20" fill="url(#titaniumGrad)"/>
+      <line x1="0" y1="0" x2="20" y2="0" stroke="rgba(255,255,255,0.4)" stroke-width="0.5"/>
+      <line x1="0" y1="10" x2="20" y2="10" stroke="rgba(0,0,0,0.2)" stroke-width="0.3"/>
+    </pattern>
+  </defs>
+  <!-- Case outline -->
+  <rect x="30" y="50" width="340" height="500" rx="20" fill="url(#titaniumTexture)"/>
+  <!-- Screen area -->
+  <rect x="60" y="100" width="280" height="380" rx="8" fill="#000000" opacity="0.85"/>
+  <!-- Camera bump -->
+  <ellipse cx="200" cy="85" rx="25" ry="8" fill="url(#titaniumTexture)"/>
+  <!-- Brushed metal effect -->
+  <line x1="50" y1="200" x2="350" y2="200" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+  <line x1="50" y1="250" x2="350" y2="250" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+  <line x1="50" y1="300" x2="350" y2="300" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+</svg>

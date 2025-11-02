@@ -1,0 +1,24 @@
+<svg width="400" height="600" viewBox="0 0 400 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="marbleGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f5f5f5;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#e8e8e8;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#d0d0d0;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="marbleGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e0e0e0;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#c8c8c8;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#b0b0b0;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <!-- Case base -->
+  <rect x="30" y="50" width="340" height="500" rx="20" fill="url(#marbleGrad1)"/>
+  <!-- Marble veins -->
+  <path d="M50,100 Q150,150 200,200 T350,300" stroke="url(#marbleGrad2)" stroke-width="8" fill="none" opacity="0.6"/>
+  <path d="M80,250 Q180,200 280,250 T450,350" stroke="url(#marbleGrad2)" stroke-width="6" fill="none" opacity="0.5"/>
+  <path d="M100,400 Q200,350 300,400" stroke="url(#marbleGrad2)" stroke-width="5" fill="none" opacity="0.4"/>
+  <!-- Screen area -->
+  <rect x="60" y="100" width="280" height="380" rx="8" fill="#000000" opacity="0.8"/>
+  <!-- Camera bump -->
+  <ellipse cx="200" cy="85" rx="25" ry="8" fill="url(#marbleGrad1)"/>
+</svg>
