@@ -20,31 +20,25 @@ function EntryPage() {
     setIsSubmitting(true)
     setSubmitMessage('')
     
-    // Google Apps Script Web App URL - Replace with your Web App URL (NOT the sheet URL)
-    // Follow instructions in GOOGLE_SHEETS_SETUP.md to create the script and get this URL
-    // It should look like: https://script.google.com/macros/s/AKfycby.../exec
-    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw_sUCJRCE2yOrP03RTJf9VKh0UcZ3Usk3yhIz1xjLZH_k2CgzIWGsoNbE2pZnatBIbaQ/exec'
+    // Get API URL from environment variable
+    const EMAIL_API_URL = import.meta.env.VITE_EMAIL_API
+    
+    if (!EMAIL_API_URL) {
+      console.error('VITE_EMAIL_API is not configured')
+      setSubmitMessage('Configuration error. Please contact support.')
+      setIsSubmitting(false)
+      return
+    }
     
     try {
-      // If you haven't set up the Google Script URL yet, use a placeholder
-      if (GOOGLE_SCRIPT_URL === 'https://script.google.com/macros/s/AKfycbyg2fx6ajkCaLNgNt9s2Xg1dyGSPjAxuv5hyWCWF_lX0YOL4R8mxdK86VmduGTyNWrj9w/exec') {
-        // For now, just log and show success message
-        console.log('Email submitted:', email)
-        setSubmitMessage('Thank you for joining! Check your email for exclusive access.')
-        setEmail('')
-        setIsSubmitting(false)
-        return
-      }
-      
-      // Send email to Google Sheets via Google Apps Script
-      // Google Apps Script works better with form data when using no-cors
+      // Send email to Google Sheets via API
       const formData = new URLSearchParams()
       formData.append('email', email)
       formData.append('timestamp', new Date().toISOString())
       
       // First try with JSON
       try {
-        const response = await fetch(GOOGLE_SCRIPT_URL, {
+        const response = await fetch(EMAIL_API_URL, {
           method: 'POST',
           mode: 'no-cors',
           headers: {
@@ -63,7 +57,7 @@ function EntryPage() {
         setEmail('')
       } catch (fetchError) {
         // Fallback: try with form data
-        await fetch(GOOGLE_SCRIPT_URL, {
+        await fetch(EMAIL_API_URL, {
           method: 'POST',
           mode: 'no-cors',
           body: formData,
