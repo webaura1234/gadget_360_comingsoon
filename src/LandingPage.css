@@ -185,151 +185,6 @@ html {
   z-index: -9999 !important;
 }
 
-/* Spline Background */
-.spline-background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  z-index: 0;
-  pointer-events: none;
-  overflow: hidden;
-  filter: brightness(0.85) contrast(1.1) saturate(1.2);
-  mix-blend-mode: normal;
-}
-
-.spline-background > * {
-  width: 100% !important;
-  height: 100% !important;
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  position: absolute !important;
-  top: 0 !important;
-  left: 0 !important;
-}
-
-.spline-background canvas {
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: cover;
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  pointer-events: none !important;
-}
-
-/* Hide buttons and UI elements in Spline scene */
-.spline-background button,
-.spline-background [class*="button"]:not([class*="spline"]),
-.spline-background [class*="Button"]:not([class*="spline"]),
-.spline-background [data-spline-button] {
-  display: none !important;
-  opacity: 0 !important;
-  visibility: hidden !important;
-  pointer-events: none !important;
-}
-
-/* Hide Spline branding/watermark - Enhanced */
-.spline-background [class*="spline-watermark"],
-.spline-background [class*="SplineWatermark"],
-.spline-background [class*="watermark"],
-.spline-background [class*="Watermark"],
-.spline-background [id*="watermark"],
-.spline-background [id*="spline-watermark"],
-.spline-background [id*="SplineWatermark"],
-.spline-background a[href*="spline"],
-.spline-background a[href*="Spline"],
-.spline-background [data-spline-watermark],
-.spline-background [data-watermark],
-.spline-background iframe[title*="Spline"],
-.spline-background [aria-label*="Spline"],
-.spline-background [aria-label*="spline"],
-/* Target elements with specific positioning (bottom right corner watermark) */
-.spline-background > div > div[style*="position: fixed"],
-.spline-background > div > div[style*="position: absolute"] {
-  display: none !important;
-  opacity: 0 !important;
-  visibility: hidden !important;
-  pointer-events: none !important;
-  z-index: -9999 !important;
-  height: 0 !important;
-  width: 0 !important;
-  overflow: hidden !important;
-  position: absolute !important;
-  left: -9999px !important;
-  top: -9999px !important;
-}
-
-/* Target Spline's default watermark container */
-.spline-background > div:last-child:not(canvas),
-.spline-background canvas + div,
-.spline-background iframe {
-  position: relative;
-}
-
-.spline-background iframe {
-  pointer-events: none !important;
-}
-
-/* Hide any link containing "spline" text - Enhanced */
-.spline-background a,
-.spline-background [role="link"],
-.spline-background a[href*="spline"],
-.spline-background a[href*="Spline"] {
-  display: none !important;
-  opacity: 0 !important;
-  visibility: hidden !important;
-  height: 0 !important;
-  width: 0 !important;
-  pointer-events: none !important;
-  position: absolute !important;
-  left: -9999px !important;
-  top: -9999px !important;
-}
-
-/* Target bottom-right positioned elements that might be watermark */
-.spline-background > div > * {
-  position: relative;
-}
-
-.spline-background > div > div:last-child:not(canvas):not(iframe) {
-  position: relative;
-}
-
-/* More aggressive hiding for elements in bottom right corner */
-.spline-background div[style*="bottom: 0"],
-.spline-background div[style*="bottom:0"],
-.spline-background div[style*="right: 0"],
-.spline-background div[style*="right:0"] {
-  display: none !important;
-  opacity: 0 !important;
-  visibility: hidden !important;
-}
-
-/* Global watermark hiding - Target entire document */
-body > div:last-child[style*="position: fixed"],
-body > div:last-child[style*="position: absolute"],
-body > a[href*="spline"],
-body > a[href*="Spline"],
-body *[class*="spline"][class*="watermark"],
-body *[class*="Spline"][class*="Watermark"],
-body *[id*="spline-watermark"],
-body *[id*="SplineWatermark"] {
-  display: none !important;
-  opacity: 0 !important;
-  visibility: hidden !important;
-  pointer-events: none !important;
-  height: 0 !important;
-  width: 0 !important;
-  position: absolute !important;
-  left: -9999px !important;
-  top: -9999px !important;
-  z-index: -9999 !important;
-}
-
-/* Removed overly aggressive rules that were hiding app content */
 
 /* Animation Classes */
 .animate-fade-in-up {
@@ -362,131 +217,6 @@ body *[id*="SplineWatermark"] {
   opacity: 0;
 }
 
-.background-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    to bottom, 
-    rgba(0, 0, 0, 0.92) 0%, 
-    rgba(0, 0, 0, 0.85) 25%,
-    rgba(0, 0, 0, 0.78) 50%, 
-    rgba(0, 0, 0, 0.82) 75%,
-    rgba(0, 0, 0, 0.88) 100%
-  );
-  z-index: 1;
-  pointer-events: none;
-}
-
-.background-gradient-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(
-    ellipse at center,
-    rgba(255, 0, 0, 0.08) 0%,
-    rgba(255, 51, 51, 0.06) 25%,
-    rgba(255, 102, 102, 0.04) 50%,
-    rgba(0, 0, 0, 0.3) 75%,
-    rgba(0, 0, 0, 0.7) 100%
-  );
-  z-index: 2;
-  pointer-events: none;
-  mix-blend-mode: overlay;
-  animation: gradientPulse 8s ease-in-out infinite;
-}
-
-.background-pattern-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: 
-    radial-gradient(circle at 20% 50%, rgba(255, 0, 0, 0.03) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(255, 102, 102, 0.03) 0%, transparent 50%),
-    radial-gradient(circle at 50% 20%, rgba(255, 51, 51, 0.03) 0%, transparent 50%);
-  background-size: 100% 100%, 100% 100%, 100% 100%;
-  z-index: 2;
-  pointer-events: none;
-  mix-blend-mode: screen;
-  opacity: 0.6;
-}
-
-@keyframes gradientPulse {
-  0%, 100% {
-    opacity: 0.8;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.05);
-  }
-}
-
-/* Watermark Cover - Decorative element to hide Spline watermark */
-.watermark-cover {
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  width: 200px;
-  height: 80px;
-  z-index: 50;
-  pointer-events: none;
-  background: linear-gradient(
-    135deg,
-    rgba(0, 0, 0, 0.95) 0%,
-    rgba(0, 0, 0, 0.92) 30%,
-    rgba(0, 0, 0, 0.88) 60%,
-    rgba(0, 0, 0, 0.85) 100%
-  );
-  backdrop-filter: blur(10px);
-  border-radius: 8px 0 0 0;
-  box-shadow: -2px -2px 10px rgba(0, 0, 0, 0.5);
-  /* Create a decorative pattern */
-  background-image: 
-    radial-gradient(circle at 80% 30%, rgba(255, 0, 0, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 20% 70%, rgba(255, 102, 102, 0.08) 0%, transparent 50%);
-  /* Ensure it covers the watermark area */
-  min-width: 180px;
-  min-height: 70px;
-}
-
-/* Additional overlay to ensure complete coverage */
-.watermark-cover::before {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.98);
-  border-radius: 8px 0 0 0;
-  z-index: -1;
-}
-
-/* Mobile responsive */
-@media (max-width: 768px) {
-  .watermark-cover {
-    width: 150px;
-    height: 60px;
-    min-width: 140px;
-    min-height: 55px;
-  }
-}
-
-@media (max-width: 480px) {
-  .watermark-cover {
-    width: 120px;
-    height: 50px;
-    min-width: 110px;
-    min-height: 45px;
-  }
-}
 
 /* Navbar Styles */
 .navbar {
@@ -1404,6 +1134,146 @@ body *[id*="SplineWatermark"] {
   width: 80%;
 }
 
+/* Store Hero Section */
+.store-hero-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 5;
+}
+
+.store-hero-image-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.store-hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.6) contrast(1.1) saturate(0.9);
+}
+
+.store-hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.4) 0%,
+    rgba(0, 0, 0, 0.3) 50%,
+    rgba(0, 0, 0, 0.5) 100%
+  );
+  z-index: 1;
+}
+
+.store-hero-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  padding: 6rem 2rem 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.store-hero-text-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 3rem 2rem;
+  box-sizing: border-box;
+}
+
+.store-hero-heading {
+  font-family: 'Manrope', sans-serif;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 2rem;
+  margin-top: 0;
+  letter-spacing: 0.1em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8), 0 0 30px rgba(255, 102, 102, 0.4);
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.store-hero-text {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(1.125rem, 2vw, 1.5rem);
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.95);
+  line-height: 1.75;
+  letter-spacing: -0.01em;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  position: relative;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  z-index: 10;
+  box-sizing: border-box;
+}
+
+.store-hero-text::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: -1rem;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(to right, transparent, rgba(255, 102, 102, 0.8), transparent);
+  border-radius: 2px;
+}
+
+@media (max-width: 768px) {
+  .store-hero-content {
+    padding: 5rem 1.5rem 1.5rem;
+  }
+
+  .store-hero-text-wrapper {
+    padding: 2rem 1.5rem;
+    border-radius: 8px;
+  }
+
+  .store-hero-heading {
+    margin-bottom: 1.5rem;
+  }
+
+  .store-hero-text {
+    font-size: clamp(1rem, 4vw, 1.25rem);
+    padding: 0 1rem;
+  }
+
+  .store-hero-text::before {
+    width: 40px;
+    height: 2px;
+  }
+}
+
+
 .section-headline {
   font-size: clamp(1.5rem, 3vw, 2rem);
   font-weight: 600;
@@ -1708,10 +1578,6 @@ body *[id*="SplineWatermark"] {
   .contact-info {
     grid-template-columns: 1fr;
     gap: 2rem;
-  }
-
-  .spline-background {
-    height: 100vh;
   }
 
   .page-content {
