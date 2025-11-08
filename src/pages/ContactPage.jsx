@@ -35,7 +35,7 @@ function ContactPage() {
       <div className="page-content">
         <div className={`contact-section-full ${isVisible ? 'animate-fade-in-up' : ''}`}>
           <h1 className="page-headline">
-            <span className="page-headline-gradient">Contact Us</span>
+            <span className="page-headline-gradient">CONTACT US</span>
           </h1>
           
           <p className="section-text" style={{ marginBottom: '3rem' }}>
@@ -43,7 +43,7 @@ function ContactPage() {
           </p>
 
           <div className="contact-grid">
-            <div className="contact-info-section">
+            <div className={`contact-info-section ${isVisible ? 'animate-fade-in-up-delay-1' : ''}`}>
               <div className="contact-item-detailed">
                 <h3 className="contact-label">Email</h3>
                 <a href="mailto:info@gadget360.com" className="contact-link-large">
@@ -67,7 +67,7 @@ function ContactPage() {
               </div>
             </div>
 
-            <form className="contact-form" onSubmit={handleSubmit}>
+            <form className={`contact-form ${isVisible ? 'animate-fade-in-up-delay-2' : ''}`} onSubmit={handleSubmit}>
               <input
                 type="text"
                 name="name"

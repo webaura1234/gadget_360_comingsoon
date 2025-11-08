@@ -497,6 +497,49 @@ function EntryPage() {
             )}
           </form>
         </div>
+
+        {/* Offline Store Section */}
+        <div className={`offline-store-section ${isVisible ? 'animate-fade-in-up-delay-4' : ''}`}>
+          <h2 className="cta-headline">Visit Our Offline Store</h2>
+          <p className="cta-text">
+            Experience our premium collection in person. Visit us at our physical locations.
+          </p>
+          
+          <div className="stores-grid">
+            <div 
+              className="store-card"
+              onClick={() => window.open('https://maps.google.com/?q=GADGET+360+Store', '_blank')}
+            >
+              <h3 className="store-name">GADGET 360 Flagship Store</h3>
+              <p className="store-address">123 Premium Avenue, Tech District</p>
+              <p className="store-city">New York, NY 10001</p>
+              <p className="store-hours">Mon-Sat: 10AM - 8PM | Sun: 12PM - 6PM</p>
+              <span className="store-link">View on Maps →</span>
+            </div>
+            
+            <div 
+              className="store-card"
+              onClick={() => window.open('https://maps.google.com/?q=GADGET+360+Store+Los+Angeles', '_blank')}
+            >
+              <h3 className="store-name">GADGET 360 Los Angeles</h3>
+              <p className="store-address">456 Design Boulevard, Fashion Quarter</p>
+              <p className="store-city">Los Angeles, CA 90028</p>
+              <p className="store-hours">Mon-Sat: 10AM - 8PM | Sun: 12PM - 6PM</p>
+              <span className="store-link">View on Maps →</span>
+            </div>
+            
+            <div 
+              className="store-card"
+              onClick={() => window.open('https://maps.google.com/?q=GADGET+360+Store+Chicago', '_blank')}
+            >
+              <h3 className="store-name">GADGET 360 Chicago</h3>
+              <p className="store-address">789 Innovation Street, Downtown</p>
+              <p className="store-city">Chicago, IL 60601</p>
+              <p className="store-hours">Mon-Sat: 10AM - 8PM | Sun: 12PM - 6PM</p>
+              <span className="store-link">View on Maps →</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   )
